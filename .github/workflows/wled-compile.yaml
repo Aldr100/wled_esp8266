@@ -28,11 +28,12 @@ jobs:
         cd `cat /tmp/WLEDtemp/wledfoldername`
         echo '[env:custom_build]' >>platformio.ini
         echo 'extends = env:nodemcuv2' >>platformio.ini
-        echo 'build_flags = ${env:nodemcuv2.build_flags} -D DEFAULT_LED_COUNT=100 -D USERMOD_DALLASTEMPERATURE -D USERMOD_FOUR_LINE_DISPLAY -D USERMOD_BATTERY' >>platformio.ini
+        echo 'build_flags = ${env:nodemcuv2.build_flags} -D DEFAULT_LED_COUNT=100 -D USERMOD_DALLASTEMPERATURE -D USERMOD_BATTERY -D USERMOD_BME280' >>platformio.ini
         echo 'lib_deps = ' >>platformio.ini
         echo '  ${env:nodemcuv2.lib_deps}' >>platformio.ini
         echo '  OneWire@~2.3.5' >>platformio.ini
-        echo '  olikraus/U8g2 @ ^2.28.8' >>platformio.ini
+        echo '  BME280@~3.0.0' >>platformio.ini
+        echo '  Wire' >>platformio.ini
         
         pio run -e custom_build || pio run -e custom_build
     - name: Copy Files
